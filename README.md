@@ -4,7 +4,6 @@
 [![React Version](https://img.shields.io/badge/react-19.0.0-blue.svg)](https://react.dev/)
 [![Express Version](https://img.shields.io/badge/express-4.21.2-lightgrey.svg)](https://expressjs.com/)
 [![MongoDB](https://img.shields.io/badge/mongodb-mongoose%208.9-green.svg)](https://mongoosejs.com/)
-[![Vite Version](https://img.shields.io/badge/vite-6.0.5-purple.svg)](https://vitejs.dev/)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 **LeadDesk Mini** is a production-grade, full-stack lead management platform built for the **Digital Heroes Full Stack Development Internship**. It seamlessly bridges a high-converting, modern public landing page with a secure, feature-rich admin dashboard for pipeline management and analytics.
