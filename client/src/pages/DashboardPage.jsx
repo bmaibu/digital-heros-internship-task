@@ -1,0 +1,15 @@
+import { ArrowUpRight, CircleCheck, Mail, Users } from 'lucide-react';
+import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import api, { getError } from '../services/api.js';
+import { Spinner } from '../components/Spinner.jsx';
+import { StatusBadge } from '../components/StatusBadge.jsx';
+const cards = [{ key: 'total', label: 'Total leads', icon: Users, color: 'navy' }, { key: 'new', label: 'New leads', icon: Mail, color: 'blue' }, { key: 'contacted', label: 'Contacted', icon: ArrowUpRight, color: 'amber' }, { key: 'closed', label: 'Closed', icon: CircleCheck, color: 'green' }];
+export function DashboardPage() {
+  const [stats, setStats] = useState(); const [error, setError] = useState();
+  useEffect(() => { api.get('/dashboard/stats').then(({ data }) => setStats(data)).catch((e) => setError(getError(e))); }, []);
+  if (error) return <div className="page-message">{error}</div>; if (!stats) return <Spinner label="Loading your dashboard" />;
+  const pieData = [['New', stats.new, '#7c3aed'], ['Contacted', stats.contacted, '#f59e0b'], ['Closed', stats.closed, '#10b981']].map(([name, value, color]) => ({ name, value, color }));
+  return <main className="dashboard-page"><section className="page-title"><div><h2>Your pipeline, at a glance.</h2><p>Here’s what needs your attention today.</p></div><Link className="button secondary" to="/admin/leads">View all leads</Link></section><div className="stat-grid">{cards.map(({ key, label, icon: Icon, color }) => <article className="metric-card" key={key}><div className={`metric-icon ${color}`}><Icon size={20} /></div><span>{label}</span><strong>{stats[key]}</strong></article>)}</div><section className="analytics-grid"><article className="panel"><header><div><h3>Pipeline health</h3><p>Distribution by current status</p></div></header>{stats.total ? <div className="pie-layout"><ResponsiveContainer width="100%" height={190}><PieChart><Pie data={pieData} dataKey="value" nameKey="name" innerRadius={55} outerRadius={78} paddingAngle={4}>{pieData.map((entry) => <Cell key={entry.name} fill={entry.color} />)}</Pie><Tooltip /></PieChart></ResponsiveContainer><div className="legend">{pieData.map((item) => <span key={item.name}><i style={{ background: item.color }} />{item.name}<b>{item.value}</b></span>)}</div></div> : <div className="empty compact">No leads yet.</div>}</article><article className="panel recent-panel"><header><div><h3>Recent leads</h3><p>The newest conversations in your queue</p></div><Link to="/admin/leads">See all</Link></header>{stats.recent.length ? <div className="recent-list">{stats.recent.map((lead) => <div key={lead._id}><div className="initial">{lead.name.split(' ').map((v) => v[0]).join('').slice(0, 2)}</div><span><strong>{lead.name}</strong><small>{lead.email}</small></span><StatusBadge status={lead.status} /></div>)}</div> : <div className="empty compact">New enquiries will appear here.</div>}</article></section></main>;
+}
