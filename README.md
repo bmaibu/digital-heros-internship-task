@@ -307,6 +307,8 @@ npm run seed
    - `VITE_API_URL=https://<your-render-api-domain>.onrender.com/api`
 5. Deploy. The included `client/vercel.json` ensures client-side routes (like `/admin/dashboard` or `/login`) resolve correctly on page refresh.
 
+> Vite environment variables are embedded when a deployment is built. After changing `VITE_API_URL`, redeploy the Vercel project; changing the variable alone does not update an existing bundle. The client has a production safeguard that rejects a missing or loopback (`localhost` / `127.0.0.1`) API value and uses the deployed Render API instead. Do not set `VITE_API_URL` to a local address in Vercel.
+
 ---
 
 ## 🔗 Attribution

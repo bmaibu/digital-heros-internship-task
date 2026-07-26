@@ -1,21 +1,15 @@
 import axios from 'axios';
 
+const PRODUCTION_API_URL = 'https://leaddesk-api-8if3.onrender.com/api';
+
 const getBaseURL = () => {
-  const envUrl = import.meta.env.VITE_API_URL;
-  const isProductionHost =
-    typeof window !== 'undefined' &&
-    window.location.hostname !== 'localhost' &&
-    window.location.hostname !== '127.0.0.1';
+  const envUrl = import.meta.env.VITE_API_URL?.trim();
+  const isLoopbackUrl = /^https?:\/\/(localhost|127\.0\.0\.1|\[::1\])(?::\d+)?(?:\/|$)/i.test(envUrl || '');
 
-  // On deployed non-localhost environments (e.g. Vercel), never allow a loopback / localhost API URL
-  if (isProductionHost) {
-    if (!envUrl || envUrl.includes('localhost') || envUrl.includes('127.0.0.1')) {
-      return 'https://leaddesk-api-8if3.onrender.com/api';
-    }
-    return envUrl;
-  }
+  // Vite replaces PROD at build time. A deployed bundle must never be able to
+  // direct a visitor's browser to its own localhost address.
+  if (import.meta.env.PROD) return !envUrl || isLoopbackUrl ? PRODUCTION_API_URL : envUrl.replace(/\/$/, '');
 
-  // Local development environment
   return envUrl || 'http://localhost:5005/api';
 };
 
