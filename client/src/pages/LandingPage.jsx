@@ -13,5 +13,67 @@ export function LandingPage() {
     <section id="why-us" className="section split-section"><div><p className="eyebrow">Why LeadDesk</p><h2>A system that stays out of your way.</h2><p className="section-copy">Your sales process should feel like a conversation, not administration. We make it easy to respond quickly, understand what matters, and follow through with confidence.</p><ul className="check-list">{['One clear home for every incoming lead', 'Simple status changes for fast team alignment', 'Useful reporting without spreadsheets'].map((item) => <li key={item}><CheckCircle2 />{item}</li>)}</ul></div><div className="stat-panel"><span>LEADS MANAGED</span><strong>12,480<span>+</span></strong><p>and every one has a clear next step</p><div><b>94%</b><span>of teams respond faster in their first month</span></div></div></section>
     <section id="stories" className="section testimonials"><p className="eyebrow">Loved by teams with taste</p><h2>Less busywork, better follow-through.</h2><div className="quote-grid">{testimonials.map((testimonial) => <blockquote key={testimonial.name}>“{testimonial.quote}”<footer><div className="quote-avatar">{testimonial.name[0]}</div><span><strong>{testimonial.name}</strong>{testimonial.role}</span></footer></blockquote>)}</div></section>
     <section id="contact" className="contact-section"><div><p className="eyebrow">Let’s make a good first impression</p><h2>Tell us what you’re working on.</h2><p>Share a little context and we’ll get back to you within one business day.</p><div className="contact-mark"><Zap /> Thoughtful work starts with a real conversation.</div></div><LeadForm /></section></main>
-    <footer className="site-footer"><Link className="brand" to="/"><span>✦</span> LeadDesk</Link><p>© {new Date().getFullYear()} LeadDesk Mini</p><a href="https://digitalheroesco.com" target="_blank" rel="noreferrer">Built for Digital Heroes Training Task</a></footer></div>;
+    <footer className="site-footer-v2">
+      <div className="footer-container">
+        <div className="footer-top">
+          <div className="footer-brand-col">
+            <Link className="brand footer-brand" to="/">
+              <span>✦</span> LeadDesk
+            </Link>
+            <p className="footer-desc">
+              Turn customer interest into momentum with clarity, focus, and modern pipeline management.
+            </p>
+            <div className="footer-status-pill">
+              <span className="live-dot-pulse"></span> API Operational
+            </div>
+          </div>
+
+          <div className="footer-nav-col">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="#features">Features</a></li>
+              <li><a href="#why-us">Why Us</a></li>
+              <li><a href="#stories">Stories</a></li>
+              <li><a href="#contact">Contact Form</a></li>
+              <li><Link to="/admin/login">Admin Portal</Link></li>
+            </ul>
+          </div>
+
+          <div className="footer-nav-col">
+            <h4>Architecture</h4>
+            <ul>
+              <li><span>React 19 + Vite</span></li>
+              <li><span>Node.js REST API</span></li>
+              <li><span>MongoDB Database</span></li>
+              <li><span>JWT Auth Guard</span></li>
+            </ul>
+          </div>
+
+          <div className="footer-badge-col">
+            <h4>Internship Attribution</h4>
+            <a
+              href="https://digitalheroesco.com"
+              target="_blank"
+              rel="noreferrer"
+              className="attribution-card"
+            >
+              <div className="badge-sparkle">✦</div>
+              <div>
+                <strong>Digital Heroes Task</strong>
+                <span>Official Internship Submission ↗</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div className="footer-bottom">
+          <p>© {new Date().getFullYear()} LeadDesk Mini. All rights reserved.</p>
+          <a href="https://digitalheroesco.com" target="_blank" rel="noreferrer" className="footer-backlink">
+            Built for Digital Heroes Training Task
+          </a>
+        </div>
+      </div>
+    </footer>
+  </div>;
 }
+
