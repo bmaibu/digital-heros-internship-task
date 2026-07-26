@@ -2,7 +2,6 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { ErrorBoundary } from './components/ErrorBoundary.jsx';
 import { ProtectedRoute } from './components/ProtectedRoute.jsx';
 import { DashboardLayout } from './layouts/DashboardLayout.jsx';
-import { ClientsPage } from './pages/ClientsPage.jsx';
 import { DashboardPage } from './pages/DashboardPage.jsx';
 import { LandingPage } from './pages/LandingPage.jsx';
 import { LeadsPage } from './pages/LeadsPage.jsx';
@@ -26,7 +25,6 @@ export default function App() {
           <Route index element={<Navigate to="dashboard" replace />} />
           <Route path="dashboard" element={<DashboardPage />} />
           <Route path="leads" element={<LeadsPage />} />
-          <Route path="clients" element={<ClientsPage />} />
         </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

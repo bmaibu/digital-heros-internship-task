@@ -1,4 +1,4 @@
-import { BarChart3, Building2, LogOut, Menu, Users, X } from 'lucide-react';
+import { BarChart3, LogOut, Menu, Users, X } from 'lucide-react';
 import { useState } from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.jsx';
@@ -16,7 +16,6 @@ export function DashboardLayout() {
   const links = [
     { to: '/admin/dashboard', label: 'Dashboard', icon: BarChart3 },
     { to: '/admin/leads', label: 'Leads', icon: Users },
-    { to: '/admin/clients', label: 'Clients', icon: Building2 },
   ];
 
   return (
