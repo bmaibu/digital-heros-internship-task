@@ -106,6 +106,7 @@ digital-heros-internship-task/
 │   │   ├── layouts/
 │   │   │   └── DashboardLayout.jsx# Admin workspace header & sidebar shell
 │   │   ├── pages/
+│   │   │   ├── ClientsPage.jsx    # Clients roster, search, contract tiers & details modal
 │   │   │   ├── DashboardPage.jsx  # Metrics cards & chart overview
 │   │   │   ├── LandingPage.jsx    # Public hero site & lead form
 │   │   │   ├── LeadsPage.jsx      # Lead list, search, status & delete
